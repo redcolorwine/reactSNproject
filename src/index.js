@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { Provider } from 'react-redux';
-export let rerenderTree = (state) => {
+
   
   ReactDOM.render(
     <Provider store={store}>
@@ -14,12 +14,5 @@ export let rerenderTree = (state) => {
 
     ,document.getElementById('root')
   );
-}
 
 
-rerenderTree(store.getState());
-
-store.subscribe(()=>{ 
-  let state=store.getState();
-  rerenderTree(state);
-});

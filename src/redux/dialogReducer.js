@@ -21,10 +21,13 @@ let initialState={
 const dialogReducer = (state=initialState, action) => {
 
     switch (action.type) {
-        case CHANGE_DIALOG_AREA:
-            state.dialogMessage = action.message;
-            return state;
-        case ADD_MESSAGE:
+        case CHANGE_DIALOG_AREA:{
+            let stateCopy={...state};
+            stateCopy.dialogMessage = action.message;
+            return stateCopy;
+        }
+        case ADD_MESSAGE:{
+            let stateCopy={...state};
             var lenghtD = state.messagesData.length + 1;
             var namz = action.username + ' ' + lenghtD;
             let newMessage = {
@@ -35,9 +38,12 @@ const dialogReducer = (state=initialState, action) => {
                 id: 6,
                 name: namz
             }
-            state.messagesData.push(newMessage);
-            state.dialogsData.push(newDialog);
-            return state;
+            stateCopy.messagesData=[...state.messagesData];
+            stateCopy.dialogsData=[...state.dialogsData];
+            stateCopy.messagesData.push(newMessage);
+            stateCopy.dialogsData.push(newDialog);
+            return stateCopy;
+        }
         default: return state;
     }
 
