@@ -1,7 +1,7 @@
 const CHANGE_DIALOG_AREA = 'ON-CHANGE-DIALOG-AREA';
 const ADD_MESSAGE = 'ADD-MESSAGE';
 
-let initialState={
+let initialState = {
     messagesData: [
         { id: 1, message: 'hello hi!' },
         { id: 2, message: 'how are u' },
@@ -18,32 +18,26 @@ let initialState={
     ],
     dialogMessage: 'ur dialog'
 };
-const dialogReducer = (state=initialState, action) => {
 
+const dialogReducer = (state = initialState, action) => {
+
+    var lenghtD = state.messagesData.length + 1;
+    var namz = action.username + ' ' + lenghtD;
     switch (action.type) {
-        case CHANGE_DIALOG_AREA:{
-            let stateCopy={...state};
-            stateCopy.dialogMessage = action.message;
-            return stateCopy;
-        }
-        case ADD_MESSAGE:{
-            let stateCopy={...state};
-            var lenghtD = state.messagesData.length + 1;
-            var namz = action.username + ' ' + lenghtD;
-            let newMessage = {
-                id: 6,
-                message: state.dialogMessage
-            }
-            let newDialog = {
-                id: 6,
-                name: namz
-            }
-            stateCopy.messagesData=[...state.messagesData];
-            stateCopy.dialogsData=[...state.dialogsData];
-            stateCopy.messagesData.push(newMessage);
-            stateCopy.dialogsData.push(newDialog);
-            return stateCopy;
-        }
+        case CHANGE_DIALOG_AREA:
+            return {
+                ...state,
+                dialogMessage: action.message
+            };
+
+        case ADD_MESSAGE:
+
+            return {
+                ...state,
+                messagesData: [...state.messagesData, { id: 6, message: state.dialogMessage }],
+                dialogsData: [...state.dialogsData, { id: 6, name: namz }],
+            };
+
         default: return state;
     }
 

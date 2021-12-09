@@ -4,7 +4,7 @@ import logo from '../../media/anim.png'
 const Header=()=>{
     return(
         <header className={cmedia.header}>
-        <img src={logo}></img>
+        <img alt="logoimg" src={logo}></img>
         <span id={cmedia.ht}>AnimaSocial Net</span>
       </header>
     )

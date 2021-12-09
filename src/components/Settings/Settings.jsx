@@ -2,7 +2,7 @@ import cmedia from './settings.module.css'
 
 const Settings=()=>{
     return (
-        <div>
+        <div className={cmedia.main}>
             settings
         </div>
     )

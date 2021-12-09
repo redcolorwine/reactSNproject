@@ -1,0 +1,79 @@
+.main {
+    font-family: consolas;
+    font-size: 20pt;
+}
+.showMo{
+text-align: center;
+font-family: consolas;
+}
+.sBut {
+    margin-top: 40px;
+    font-family: consolas;
+    font-weight: 700;
+    font-size: 15pt;
+    width: 120px;
+    height: 50px;
+    background-color: thistle;
+    border-radius: 10px;
+    color:white;
+
+}
+.itemMain {
+    display: flex;
+    justify-content: center;
+
+}
+
+.itemMain img {
+    margin-top: 10px;
+    width: 50px;
+    height: 50px;
+    align-self: center;
+    border-radius: 30px;
+
+}
+
+.userItem {
+    margin-top: 10px;
+    font-size: 10pt;
+    margin-left: 10px;
+    width: 300px;
+    height: 100px;
+    border: 1px solid white;
+    border-radius: 10px;
+    display: inline-block;
+    background-color: rgb(211, 160, 226);
+}
+
+.itemArea {
+   
+    display: grid;
+    grid-template-rows: 70px 1fr;
+    grid-template-columns: 5fr 1fr;
+    grid-template-areas:
+        "u c"
+        "m m"
+}
+
+.Message {
+    grid-area: m;
+}
+
+.Country {
+    grid-area: c;
+}
+
+.UserName {
+    grid-area: u;
+}
+
+.ibut {}
+
+.ibut #follow {
+    display: block;
+    font-size: 10pt;
+    font-family: consolas;
+    background-color: rgb(219, 141, 157);
+    color: white;
+    border-radius: 4px;
+}

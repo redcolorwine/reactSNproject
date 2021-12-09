@@ -1,5 +1,3 @@
-
-import React from 'react';
 import Dialogs from './Dialogs';
 import { connect } from 'react-redux';
 
@@ -13,20 +11,22 @@ let mapStateToProps = (state) => {
 }
 let mapDispatchToProps = (dispatch) => {
     return {
-        onChangeDialogArea:(message)=>{
+        onChangeDialogArea: (message) => {
             dispatch({
-            type: 'ON-CHANGE-DIALOG-AREA',
-            message: message,
-        });},
-        addDialogMessage:(message, userName)=>{  
+                type: 'ON-CHANGE-DIALOG-AREA',
+                message: message,
+            });
+        },
+        addDialogMessage: (message, userName) => {
             dispatch({
-            type: 'ADD-MESSAGE',
-            message: message,
-            username: userName
-        })}
+                type: 'ADD-MESSAGE',
+                message: message,
+                username: userName
+            })
+        }
 
     }
 }
-const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs);
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 export default DialogsContainer;

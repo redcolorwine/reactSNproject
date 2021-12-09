@@ -2,7 +2,7 @@ import cmedia from './music.module.css'
 
 const Music=()=>{
     return (
-        <div>
+        <div className={cmedia.main}>
             Music
         </div>
     )

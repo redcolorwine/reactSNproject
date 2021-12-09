@@ -2,7 +2,7 @@ import cmedia from './news.module.css'
 
 const News=()=>{
     return (
-        <div>
+        <div className={cmedia.main}>
             News
         </div>
     )

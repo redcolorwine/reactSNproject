@@ -1,8 +1,7 @@
 import cmedia from './MyPosts.module.css'
 import React from 'react';
 import Post from './Post/Post';
-import state, { addPostActionCreator, changeTextAreaActionCreator } from '../../../../redux/profileReducer'
-import { rerenderTree } from '../../../../index'
+
 
 
 const MyPosts = (props) => {
@@ -16,7 +15,7 @@ const MyPosts = (props) => {
         props.changeTextArea(text);
     }
     let postElements = props.posts.map(post => {
-        return (<Post likes={post.likes} itext={post.text} />);
+        return (<Post likes={post.likes} key={post.id} itext={post.text} />);
     })
     return (
         <div className="content">

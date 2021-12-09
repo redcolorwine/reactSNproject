@@ -12,7 +12,7 @@ export let changeTextAreaActionCreator = (text) => {
     }
 }
 
-let initialState={
+let initialState = {
     myPostData: [
         { id: 1, likes: 20, text: 'hello hi!' },
         { id: 2, likes: 10, text: 'how are u' },
@@ -24,27 +24,23 @@ let initialState={
 
 }
 
-const profileReducer = (state=initialState, action) => {
+const profileReducer = (state = initialState, action) => {
+
     switch (action.type) {
-        case ADD_POST:{
-            var newPost = {
-                id: 5,
-                text: state.newPostText,
-                likes: 777
+
+        case ADD_POST:
+            return {
+                ...state,
+                myPostData: [...state.myPostData, {id: 5, text: state.newPostText, likes: 777 }],
+                newPostText: " "
             };
-            let stateCopy = {...state};
-            stateCopy.myPostData=[...state.myPostData];
-            stateCopy.myPostData.push(newPost);
-            stateCopy.newPostText = " ";
-            return stateCopy;
-            break;
-        }
-        case CHANGE_TEXT_AREA:{
-            let stateCopy = {...state};
-            stateCopy.newPostText = action.message;
-            return stateCopy;
-            break;
-        }
+
+        case CHANGE_TEXT_AREA:
+            return {
+                ...state,
+                newPostText: action.message
+            };
+
         default: return state;
     }
 

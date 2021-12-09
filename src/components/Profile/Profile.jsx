@@ -1,6 +1,4 @@
-import MyPosts from "./MyPosts/Post/MyPosts";
 import MyPostsContainer from "./MyPosts/Post/MyPostsContainer";
-import Post from "./MyPosts/Post/Post/Post";
 import cmedia from "./Profile.module.css"
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 const Profile = (props) => {

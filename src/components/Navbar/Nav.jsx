@@ -1,13 +1,11 @@
 import cmedia from "./Nav.module.css"
 import { NavLink } from "react-router-dom";
 import Friends from "./Friends/Friends";
-import store from "../../redux/redux_store";
-import storeContext from "../../storeContext";
 const Nav = (props) => {
 
       let friends = props.navstore.getState().sidePage.friendsList.map((el) => {
         return (
-          <Friends name={el.name} id={el.id} />
+          <Friends name={el.name} key={el.id} id={el.id} />
         );
       })
     
@@ -24,6 +22,12 @@ const Nav = (props) => {
           </div>
           <div className={cmedia.ndiv}>
             <NavLink to="/music" className={navData => navData.isActive ? cmedia.active : cmedia.ndiv}>Music</NavLink>
+          </div>
+          <div className={cmedia.ndiv}>
+            <NavLink to="/users" className={navData => navData.isActive ? cmedia.active : cmedia.ndiv}>Users</NavLink>
+          </div>
+          <div className={cmedia.ndiv}>
+            <NavLink to="/usersC" className={navData => navData.isActive ? cmedia.active : cmedia.ndiv}>UsersCourse</NavLink>
           </div>
           <div className={cmedia.ndiv}>
             <NavLink to="/settings" className={navData => navData.isActive ? cmedia.active : cmedia.ndiv}>Settings</NavLink>
