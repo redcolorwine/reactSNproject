@@ -4,7 +4,9 @@ import UsersClass from "./UsersClass"
 
 let mapStateToProps = (state) => {
     return {
-        users: state.userPageC.users
+        users: state.userPageC.users,
+        pageSize: state.userPageC.pageSize,
+        totalUsersCount: state.userPageC.totalUsersCount
     }
 }
 

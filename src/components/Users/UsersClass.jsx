@@ -13,7 +13,18 @@ class Users extends React.Component {
     }
 
     render() {
+
+        let pagesCount=this.props.totalUsersCount/this.props.pageSize;
+        let pages=[];
+        for(let i=0;i<pagesCount;i++){
+            pages.push(i+1);
+        }
         return <div>
+            <div>
+                {pages.map((el)=>{
+                    return (<span className={true ? cmedia.selectedPage : " "}>{el}</span>)
+                })}
+            </div>
             {
                 this.props.users.map((ul) => {
                     return <div key={ul.id} >
