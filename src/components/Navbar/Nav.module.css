@@ -1,0 +1,38 @@
+.nav {
+  grid-area: n;
+  background-color: rgba(155, 106, 155,0.5);
+  background: linear-gradient(45deg, pink, rgb(66, 15, 66));
+ 
+}
+.nav a{
+  font-family: consolas;
+  text-decoration: none;
+  font-size: 20pt;
+  color:white;
+  font-weight: 600;
+  margin-left: 10px;
+  transition: 0.4s;
+}
+.nav a:hover{
+  color:plum;
+}
+.ndiv{
+  margin-top: 25px;
+}
+
+.nav a.active{
+  color:goldenrod;
+}
+
+.friends{
+  margin-top: 50px;
+  font-family: consolas;
+  font-size: 12pt;
+  color:rgb(209, 157, 209);
+  font-weight: 600;
+  margin-left: 10px;
+  display: flex;
+  justify-content:space-evenly;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

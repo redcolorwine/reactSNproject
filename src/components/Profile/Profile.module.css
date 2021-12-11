@@ -1,0 +1,21 @@
+
+
+.Posts{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 20pt;
+  width: 170px;
+}
+.profileText{
+  display: inline;
+}
+.postBut{
+  color: aliceblue;
+  background-color: violet;
+  border-radius: 5px;
+  display: block;
+  float: right;
+}
+.postText{
+  height: 40px;
+  border-radius: 5px;
+}

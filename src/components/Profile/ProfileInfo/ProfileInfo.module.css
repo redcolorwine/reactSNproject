@@ -1,0 +1,22 @@
+
+.backImg img{
+  height: 200px;
+  width: 100%;
+}
+.profImg img{
+  width: 120px;
+  border-radius: 30px;
+ 
+}
+.profImg{
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  color:white;
+  font-family: consolas;
+  font-weight: 600;
+  padding: 10px;
+}
+.profileText{
+  display: block;
+  padding: 10px;
+}

@@ -1,0 +1,14 @@
+.friend{
+font-size: 10pt;
+padding: 5px;
+color:azure;
+background-color: hotpink;
+border-radius: 30px;
+text-align: center;
+width: 45px;
+}
+
+.friend img{
+    width: 25px;
+    border-radius: 30px;
+}
