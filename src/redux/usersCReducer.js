@@ -3,8 +3,12 @@ let InitialState = {
     users: [
     ],
     pageSize: 5,
+<<<<<<< HEAD
     totalUsersCount: 0,
     currentPage: 1
+=======
+    totalUsersCount: 0
+>>>>>>> a9e404b65585935683e7e99a2a6024122b198756
 
 }
 
@@ -38,6 +42,7 @@ const UsersCReducer = (state = InitialState, action) => {
             };
         case 'SET_USERS':
             return {
+<<<<<<< HEAD
                 ...state, users:action.users
             }
 
@@ -50,13 +55,21 @@ const UsersCReducer = (state = InitialState, action) => {
                 return{
                     ...state, totalUsersCount:action.totalUsersCount
                 }
+=======
+                ...state, users: [...state.users,...action.users]
+            }
+>>>>>>> a9e404b65585935683e7e99a2a6024122b198756
         default: return state;
     }
 
 }
 
 export const followActionCreator = (userId) => {
+<<<<<<< HEAD
     return { type: 'FOLLOW', userId }
+=======
+   return { type: 'FOLLOW', userId }
+>>>>>>> a9e404b65585935683e7e99a2a6024122b198756
 }
 export const unfollowActionCreator = (userId) => {
     return { type: 'UNFOLLOW', userId }

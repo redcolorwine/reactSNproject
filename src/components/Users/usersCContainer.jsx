@@ -6,8 +6,12 @@ let mapStateToProps = (state) => {
     return {
         users: state.userPageC.users,
         pageSize: state.userPageC.pageSize,
+<<<<<<< HEAD
         totalUsersCount: state.userPageC.totalUsersCount,
         currentPage: state.userPageC.currentPage
+=======
+        totalUsersCount: state.userPageC.totalUsersCount
+>>>>>>> a9e404b65585935683e7e99a2a6024122b198756
     }
 }
 
@@ -21,6 +25,7 @@ let mapDispatchToProps = (dispatch) => {
         },
         setUsers: (users)=>{
             dispatch(setUsersActionCreator(users));
+<<<<<<< HEAD
         },
         setPage: (currentPage)=>{
             dispatch({
@@ -33,6 +38,8 @@ let mapDispatchToProps = (dispatch) => {
                 type: 'SET_TOTALUSERS',
                 totalUsersCount: usersCount
             })
+=======
+>>>>>>> a9e404b65585935683e7e99a2a6024122b198756
         }
     }
 }
