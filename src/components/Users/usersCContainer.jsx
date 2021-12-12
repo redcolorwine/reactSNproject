@@ -1,6 +1,7 @@
 import { connect } from "react-redux"
 import { followActionCreator, setUsersActionCreator, unfollowActionCreator } from "../../redux/usersCReducer"
-import UsersClass from "./UsersClass"
+import UsersAPIComponent from "./UsersAPIComponent"
+
 
 let mapStateToProps = (state) => {
     return {
@@ -38,6 +39,6 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-const UsersCContainer = connect(mapStateToProps, mapDispatchToProps)(UsersClass);
+const UsersCContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
 
 export default UsersCContainer;
