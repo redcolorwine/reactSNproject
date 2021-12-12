@@ -6,7 +6,6 @@ import React from 'react'
 class Users extends React.Component {
 
 
-<<<<<<< HEAD
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentpage}&count=${this.props.pageSize}`).then(response => {
             this.props.setUsers(response.data.items);
@@ -32,25 +31,6 @@ onPageChanged=(pageNumber)=>{
             <div>
                 {pages.map((page) => {
                     return (<span onClick={(e)=>{this.onPageChanged(page);}} className={this.props.currentPage === page && cmedia.selectedPage}>{page}</span>)
-=======
-    componentDidMount(){
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-            this.props.setUsers(response.data.items);
-        });
-    }
-
-    render() {
-
-        let pagesCount=this.props.totalUsersCount/this.props.pageSize;
-        let pages=[];
-        for(let i=0;i<pagesCount;i++){
-            pages.push(i+1);
-        }
-        return <div>
-            <div>
-                {pages.map((el)=>{
-                    return (<span className={true ? cmedia.selectedPage : " "}>{el}</span>)
->>>>>>> a9e404b65585935683e7e99a2a6024122b198756
                 })}
             </div>
             {

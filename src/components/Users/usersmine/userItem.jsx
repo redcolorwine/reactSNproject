@@ -1,5 +1,5 @@
 import cmedia from './users.module.css'
-import logo1 from '../../media/animka1.jpg'
+import logo1 from '../../../media/animka1.jpg'
 import React from 'react'
 import { createRef } from 'react'
 let bref = React.createRef();
