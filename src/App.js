@@ -12,7 +12,7 @@ import {
 } from "react-router-dom";
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 
-import UsersContainer from './components/Users/usersContainer';
+import UsersContainer from './components/Users/usersmine/usersContainer';
 
 import UsersCContainer from './components/Users/usersCContainer';
 const App = (props) => {

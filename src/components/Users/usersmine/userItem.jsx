@@ -1,8 +1,7 @@
 import cmedia from './users.module.css'
-import logo1 from '../../media/animka1.jpg'
+import logo1 from '../../../media/animka1.jpg'
 import React from 'react'
-import { createRef } from 'react'
-let bref = React.createRef();
+
 
 const UserItem = (props) => {
   
@@ -10,7 +9,7 @@ const UserItem = (props) => {
         <div className={cmedia.itemMain}>
             <div className={cmedia.ibut}>
                 <img src={logo1} alt="" />
-                <input ref={bref} id={cmedia.follow} onClick={props.onFollowbut} value={props.butVal} type="button" />
+                <input id={cmedia.follow} onClick={props.onFollowbut} value={props.butVal} type="button" />
 
             </div>
 

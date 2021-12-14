@@ -3,7 +3,9 @@ let InitialState = {
     users: [
     ],
     pageSize: 5,
-    totalUsersCount: 0
+    totalUsersCount: 0,
+    currentPage: 1,
+    isFetching: false
 
 }
 
@@ -37,7 +39,23 @@ const UsersCReducer = (state = InitialState, action) => {
             };
         case 'SET_USERS':
             return {
-                ...state, users: [...state.users,...action.users]
+                ...state, users: action.users
+            }
+
+        case 'SET_PAGE':
+            return {
+                ...state, currentPage: action.currentPage
+            }
+
+        case 'SET_TOTALUSERS':
+            return {
+                ...state, totalUsersCount: action.totalUsersCount
+            }
+
+        case 'TOGGLE_IS_FETCHING':
+            return {
+                ...state,
+                isFetching: action.isFetching
             }
         default: return state;
     }
@@ -45,12 +63,19 @@ const UsersCReducer = (state = InitialState, action) => {
 }
 
 export const followActionCreator = (userId) => {
-   return { type: 'FOLLOW', userId }
+    return { type: 'FOLLOW', userId }
 }
 export const unfollowActionCreator = (userId) => {
     return { type: 'UNFOLLOW', userId }
 }
 export const setUsersActionCreator = (users) => {
     return { type: 'SET_USERS', users }
+}
+
+export const setToggleIsFetching = (isFetching) => {
+    return {
+        type: 'TOGGLE_IS_FETCHING',
+        isFetching
+    }
 }
 export default UsersCReducer;

@@ -8,3 +8,14 @@
     font-weight: 800;
     color: yellow;
 }
+
+span{
+    cursor: pointer;
+}
+.preloader{
+    position: absolute;
+    left: 50%;
+    top:50%;
+    width: 70px;
+    height: 70px;
+}
