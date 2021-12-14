@@ -57,6 +57,16 @@ const UsersCReducer = (state = InitialState, action) => {
                 ...state,
                 isFetching: action.isFetching
             }
+
+        case 'SET_PAGE':
+            return {
+                ...state, currentPage: action.currentPage
+            }
+
+        case 'SET_TOTALUSERS':
+            return {
+                ...state, totalUsersCount: action.totalUsersCount
+            }
         default: return state;
     }
 
