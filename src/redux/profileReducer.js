@@ -1,5 +1,6 @@
 const ADD_POST = 'ADD-POST';
 const CHANGE_TEXT_AREA = 'CHANGE-TEXT-AREA';
+const SET_USER_PROFILE='SET_USER_PROFILE';
 export let addPostActionCreator = () => {
     return {
         type: ADD_POST
@@ -11,7 +12,7 @@ export let changeTextAreaActionCreator = (text) => {
         message: text
     }
 }
-
+export let setUserProfile=(profile)=>{return{type:SET_USER_PROFILE, profile}}
 let initialState = {
     myPostData: [
         { id: 1, likes: 20, text: 'hello hi!' },
@@ -20,7 +21,8 @@ let initialState = {
         { id: 4, likes: 34, text: 'do u want it?!rly?' },
         { id: 5, likes: 150, text: 'we need to talk' }
     ],
-    newPostText: 'helloHu'
+    newPostText: 'helloHu',
+    profile: null
 
 }
 
@@ -40,7 +42,11 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 newPostText: action.message
             };
-
+        case SET_USER_PROFILE:
+            return{
+                ...state,
+                profile:action.profile
+            }
         default: return state;
     }
 

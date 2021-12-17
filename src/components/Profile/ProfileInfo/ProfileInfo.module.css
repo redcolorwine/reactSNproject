@@ -9,8 +9,7 @@
  
 }
 .profImg{
-  display: grid;
-  grid-template-columns: 1fr 10fr;
+
   color:white;
   font-family: consolas;
   font-weight: 600;
@@ -19,4 +18,9 @@
 .profileText{
   display: block;
   padding: 10px;
+}
+
+.ulbout li{
+  list-style-type:none;
+  line-height: 20px;
 }

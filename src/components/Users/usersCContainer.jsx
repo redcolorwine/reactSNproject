@@ -12,7 +12,7 @@ class UsersCContainer extends React.Component {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentpage}&count=${this.props.pageSize}`).then(response => {
             this.props.setToggleIsFetching(false);
             this.props.setUsers(response.data.items);
-            this.props.setTotalUsersCount(response.data.totalCount / 500)
+            this.props.setTotalUsersCount(response.data.totalCount / 300)
         });
     }
 

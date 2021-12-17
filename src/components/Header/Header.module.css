@@ -17,3 +17,16 @@
   width: 50px;
   float:left;
 }
+.loginblock{
+  float:right;
+ 
+}
+.loginblock a{
+  text-decoration: none;
+  color:white;
+  font-family: consolas;
+  font-size: 12pt;
+  letter-spacing: 2px;
+  border:1px solid white;
+  background-color: rgba(146, 34, 226, 0.3);
+}

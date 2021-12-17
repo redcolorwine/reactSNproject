@@ -4,12 +4,14 @@ import dialogReducer from './dialogReducer';
 import sideBarReducer from './sideBarReducer';
 import UsersReducer from "./usersReducer";
 import UsersCReducer from "./usersCReducer";
+import authReducer from "./authReducer";
 let reducers = combineReducers({
     profilePage:profileReducer,
     messagesPage:dialogReducer,
     sidePage:sideBarReducer,
     userPage:UsersReducer,
-    userPageC:UsersCReducer
+    userPageC:UsersCReducer,
+    auth:authReducer
 });
 
 let store = createStore(reducers); 
