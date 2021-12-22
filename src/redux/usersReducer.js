@@ -13,13 +13,13 @@ let InitialState = {
 const UsersReducer = (state = InitialState, action) => {
     switch (action.type) {
         case 'ADD_USER':
-            debugger;
+           
             return {
                 ...state,
                 users: [...state.users, { id: 6, name: 'Katya', country: 'Italy', message: 'Hello!' }]
             };
         case 'FOLLOW':
-            debugger;
+          
             return {
                 ...state,
                 butVal: 'unfollow'
