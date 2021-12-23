@@ -1,4 +1,4 @@
-
+import { usersAPI } from "../api/api";
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
@@ -64,19 +64,12 @@ const UsersCReducer = (state = InitialState, action) => {
         case TOGGLE_IS_FOLLOWING_PROGRESS:
             return {
                 ...state,
-                followingInProgress: action.isFetching 
-                ? [...state.followingInProgress,action.userId] 
-                : state.followingInProgress.filter(id=>id!=action.userId)
-            }
-        case 'SET_PAGE':
-            return {
-                ...state, currentPage: action.currentPage
+                followingInProgress: action.isFetching
+                    ? [...state.followingInProgress, action.userId]
+                    : state.followingInProgress.filter(id => id != action.userId)
             }
 
-        case 'SET_TOTALUSERS':
-            return {
-                ...state, totalUsersCount: action.totalUsersCount
-            }
+
         default: return state;
     }
 
@@ -91,7 +84,9 @@ export const unfollowActionCreator = (userId) => {
 export const setUsersActionCreator = (users) => {
     return { type: 'SET_USERS', users }
 }
-
+export const setTotalUsersActionCreator = (totalUsersCount) => {
+    return { type: 'SET_TOTALUSERS', totalUsersCount }
+}
 export const setToggleIsFetching = (isFetching) => {
     return {
         type: 'TOGGLE_IS_FETCHING',
@@ -104,5 +99,44 @@ export const toggleFollowingProgress = (isFetching, userId) => {
         isFetching,
         userId
     }
+}
+
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(setToggleIsFetching(true));
+
+        usersAPI.getUsers(currentPage, pageSize).then(response => {
+            dispatch(setToggleIsFetching(false));
+            dispatch(setUsersActionCreator(response.items));
+            dispatch(setTotalUsersActionCreator(response.totalCount / 300));
+            dispatch({ type: 'SET_PAGE', currentPage });
+        });
+    }
+}
+
+export const followUsersThunkCreator = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleFollowingProgress(true, userId));
+        usersAPI.follow(userId).then(response => {
+            if (response.data.resultCode == 0) {
+                dispatch(followActionCreator(userId));
+            }
+            dispatch(toggleFollowingProgress(false, userId));
+        });
+    }
+
+}
+
+export const unfollowUsersThunkCreator = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleFollowingProgress(true, userId));
+        usersAPI.unfollow(userId).then(response => {
+            if (response.data.resultCode == 0) {
+                dispatch(unfollowActionCreator(userId));
+            }
+            dispatch(toggleFollowingProgress(false, userId));
+        });
+    }
+
 }
 export default UsersCReducer;

@@ -29,24 +29,29 @@ let UsersC = (props) => {
                             <div>
                                 {ul.followed
                                     ? <button disabled={props.followingInProgress.some(id=>id===ul.id)} onClick={() => {
-                                        props.toggleFollowingProgress(true,ul.id);
-                                        usersAPI.unfollow(ul.id).then(response => {
-                                                if (response.data.resultCode == 0) {
-                                                    props.unfollow(ul.id);
-                                                }
-                                                props.toggleFollowingProgress(false, ul.id);
-                                            });
+                                        props.followUsersThunkCreator(ul.id);
+                                        
+                                        // props.toggleFollowingProgress(true,ul.id);
+                                        // usersAPI.unfollow(ul.id).then(response => {
+                                        //         if (response.data.resultCode == 0) {
+                                        //             props.unfollow(ul.id);
+                                        //         }
+                                        //         props.toggleFollowingProgress(false, ul.id);
+                                        //     });
 
 
                                     }}>unfollow</button>
                                     : <button disabled={props.followingInProgress.some(id=>id===ul.id)} onClick={() => {
-                                        props.toggleFollowingProgress(true,ul.id);
-                                        usersAPI.follow(ul.id).then(response => {
-                                                if (response.data.resultCode == 0) {
-                                                    props.follow(ul.id);
-                                                }
-                                                props.toggleFollowingProgress(false, ul.id);
-                                            });
+                                       
+                                        props.unfollowUsersThunkCreator(ul.id);
+                                    
+                                        // props.toggleFollowingProgress(true,ul.id);
+                                        // usersAPI.follow(ul.id).then(response => {
+                                        //         if (response.data.resultCode == 0) {
+                                        //             props.follow(ul.id);
+                                        //         }
+                                        //         props.toggleFollowingProgress(false, ul.id);
+                                        //     });
 
 
                                     }}>follow</button>}

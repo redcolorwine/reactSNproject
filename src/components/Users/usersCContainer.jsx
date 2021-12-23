@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { followActionCreator, setToggleIsFetching, setUsersActionCreator, toggleFollowingProgress, unfollowActionCreator } from "../../redux/usersCReducer"
+import { followActionCreator, followUsersThunkCreator, getUsersThunkCreator, toggleFollowingProgress, unfollowActionCreator, unfollowUsersThunkCreator } from "../../redux/usersCReducer"
 import React from "react";
 import UsersC from './UsersC';
 import Preloader from "../common/preloader/preloader";
@@ -9,22 +9,14 @@ class UsersCContainer extends React.Component {
 
 
     componentDidMount() {
-        this.props.setToggleIsFetching(true);
 
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(response => {
-            this.props.setToggleIsFetching(false);
-            this.props.setUsers(response.items);
-            this.props.setTotalUsersCount(response.totalCount / 300)
-        });
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize);
+
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.setToggleIsFetching(true);
-        this.props.setPage(pageNumber);
-        usersAPI.getUsers(pageNumber, this.props.pageSize).then(response => {
-            this.props.setToggleIsFetching(false);
-            this.props.setUsers(response.items);
-        });
+        this.props.getUsersThunkCreator(pageNumber, this.props.pageSize);
+    
     }
 
     render() {
@@ -39,6 +31,8 @@ class UsersCContainer extends React.Component {
                 users={this.props.users}
                 toggleFollowingProgress={this.props.toggleFollowingProgress}
                 followingInProgress={this.props.followingInProgress}
+                followUsersThunkCreator={this.props.followUsersThunkCreator}
+                unfollowUsersThunkCreator={this.props.unfollowUsersThunkCreator}
             />
         </>
     }
@@ -64,26 +58,15 @@ let mapDispatchToProps = (dispatch) => {
         unfollow: (userId) => {
             dispatch(unfollowActionCreator(userId));
         },
-        setUsers: (users) => {
-            dispatch(setUsersActionCreator(users));
+        toggleFollowingProgress: (isFetching, userId) => {
+            dispatch(toggleFollowingProgress(isFetching, userId))
         },
-        setPage: (currentPage) => {
-            dispatch({
-                type: 'SET_PAGE',
-                currentPage: currentPage
-            })
+        getUsersThunkCreator: (currentPage, pageSize) => { dispatch(getUsersThunkCreator(currentPage, pageSize)) },
+        followUsersThunkCreator:(userId)=>{
+            dispatch(followUsersThunkCreator(userId));
         },
-        setTotalUsersCount: (usersCount) => {
-            dispatch({
-                type: 'SET_TOTALUSERS',
-                totalUsersCount: usersCount
-            })
-        },
-        setToggleIsFetching: (isFetching) => {
-            dispatch(setToggleIsFetching(isFetching))
-        },
-        toggleFollowingProgress: (isFetching)=>{
-            dispatch(toggleFollowingProgress(isFetching))
+        unfollowUsersThunkCreator:(userId)=>{
+            dispatch(unfollowUsersThunkCreator(userId));
         }
     }
 }
