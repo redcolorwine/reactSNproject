@@ -21,8 +21,13 @@ export const usersAPI = {
     },
     follow(userId) {
         return instance.post(`follow/${userId}`);
+    },
+    getUserProfile(userId){
+        return instance.get(`profile/${userId}`)
+    },
+    getAuthUser(){
+        return instance.get(`auth/me`)
     }
-
 }
 
 //вовзращаем сразу data данные из запроса в компоненту, чтобы не передавать лишние данные

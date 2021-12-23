@@ -16,7 +16,7 @@ class UsersCContainer extends React.Component {
 
     onPageChanged = (pageNumber) => {
         this.props.getUsersThunkCreator(pageNumber, this.props.pageSize);
-    
+
     }
 
     render() {
@@ -62,10 +62,10 @@ let mapDispatchToProps = (dispatch) => {
             dispatch(toggleFollowingProgress(isFetching, userId))
         },
         getUsersThunkCreator: (currentPage, pageSize) => { dispatch(getUsersThunkCreator(currentPage, pageSize)) },
-        followUsersThunkCreator:(userId)=>{
+        followUsersThunkCreator: (userId) => {
             dispatch(followUsersThunkCreator(userId));
         },
-        unfollowUsersThunkCreator:(userId)=>{
+        unfollowUsersThunkCreator: (userId) => {
             dispatch(unfollowUsersThunkCreator(userId));
         }
     }
