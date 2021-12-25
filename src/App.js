@@ -17,6 +17,7 @@ import UsersCContainer from './components/Users/usersCContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import ProfileContainerFunc from './components/Profile/ProfileContainerFunc';
 import HeaderContainer from './components/Header/HeaderContainer';
+import Login from './components/login/login';
 const App = (props) => {
 
   return (
@@ -34,6 +35,7 @@ const App = (props) => {
             <Route path="/music" element={<Music />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/news" element={<News />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/users" element={<UsersContainer />} />
             <Route path="/usersC" element={<UsersCContainer />} />
           </Routes>

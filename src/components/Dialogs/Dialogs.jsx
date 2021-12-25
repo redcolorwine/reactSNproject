@@ -2,6 +2,7 @@ import cmedia from './Dialogs.module.css'
 import React from 'react';
 import Message from './Message/Message';
 import DialogItem from './DialogItem/DialogItem';
+import { Navigate } from 'react-router-dom';
 let itext = React.createRef();
 
 const Dialogs = (props) => {
@@ -22,6 +23,7 @@ const Dialogs = (props) => {
     let messageElements = props.messagesData.map(m => {
         return (<Message key={m.id} message={m.message} />);
     })
+    if (!props.isAuth) return <Navigate to={"/login"}/>
     return (
         <div className={cmedia.dialogs}>
             <div className={cmedia.dialogsItems}>
