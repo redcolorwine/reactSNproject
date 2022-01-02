@@ -5,6 +5,8 @@ import Profile from "./Profile";
 import { setUserProfile, getUserProfileThunkCreator } from '../../redux/profileReducer'
 import { Navigate, useMatch, useParams } from 'react-router-dom';
 import { usersAPI } from '../../api/api'
+import { WithAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 const ProfileContainerFunc = (props) => {
 
@@ -18,11 +20,8 @@ const ProfileContainerFunc = (props) => {
   //   })
 
   props.getUserProfileThunkCreator(userId);
-  if (!props.isAuth) return <Navigate to={"/login"}/>
-  return (
-
-    <Profile {...props} profile={props.profile} />
-  )
+  
+ return(<Profile {...props}/>)
 
 
 }
@@ -35,5 +34,11 @@ let mapStateToProps = (state) => {
 }
 
 
+// let AuthRedirectComponent = WithAuthRedirect(ProfileContainerFunc);
 
-export default connect(mapStateToProps, { setUserProfile, getUserProfileThunkCreator })(ProfileContainerFunc);
+// export default connect(mapStateToProps, { setUserProfile, getUserProfileThunkCreator })(AuthRedirectComponent);
+
+export default compose(
+  connect(mapStateToProps, { setUserProfile, getUserProfileThunkCreator }),
+  WithAuthRedirect
+)(ProfileContainerFunc)
