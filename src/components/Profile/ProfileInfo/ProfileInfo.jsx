@@ -20,7 +20,7 @@ const ProfileInfo = (props) => {
         {/* <img src={props.proImg} alt="img2" /> */}
         <div className={cmedia.profileText}>
           <img src={props.profile.photos.large} alt="" />
-          <ProfileStatus status="Hello people"/>
+          <ProfileStatus updateStatus={props.updateStatus} status={props.status}/>
           <p>{props.profile.fullName}</p>
           <p>{props.profile.aboutMe}</p>
           <p>{props.profile.lookingForAJobDescription}</p>

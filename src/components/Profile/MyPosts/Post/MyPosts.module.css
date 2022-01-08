@@ -13,9 +13,11 @@
     font-family: consolas;
     font-size: 25pt;
     padding: 10px;
+    
 }
 .posts{
     padding: 10px;
+    margin-top: 80px;
 }
 .postBut{
 font-family: consolas;

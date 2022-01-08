@@ -3,15 +3,24 @@ import { usersAPI } from "../api/api";
 const ADD_POST = 'ADD-POST';
 const CHANGE_TEXT_AREA = 'CHANGE-TEXT-AREA';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
-export let addPostActionCreator = () => {
+const SET_STATUS = 'SET_STATUS';
+export let addPostActionCreator = (newPostText) => {
     return {
-        type: ADD_POST
+        type: ADD_POST,
+        newPostText
     }
 }
 export let changeTextAreaActionCreator = (text) => {
     return {
         type: CHANGE_TEXT_AREA,
         message: text
+    }
+}
+
+export const setStatus=(status)=>{
+    return{
+        type:SET_STATUS,
+        status
     }
 }
 export let setUserProfile = (profile) => { return { type: SET_USER_PROFILE, profile } }
@@ -24,7 +33,8 @@ let initialState = {
         { id: 5, likes: 150, text: 'we need to talk' }
     ],
     newPostText: 'helloHu',
-    profile: null
+    profile: null,
+    status: " "
 
 }
 
@@ -35,7 +45,7 @@ const profileReducer = (state = initialState, action) => {
         case ADD_POST:
             return {
                 ...state,
-                myPostData: [...state.myPostData, { id: 5, text: state.newPostText, likes: 777 }],
+                myPostData: [...state.myPostData, { id: 5, text: action.newPostText, likes: 777 }],
                 newPostText: " "
             };
 
@@ -48,6 +58,11 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 profile: action.profile
+            }
+        case SET_STATUS:
+            return{
+                ...state,
+                status:action.status
             }
         default: return state;
     }
@@ -62,7 +77,22 @@ export const getUserProfileThunkCreator = (userId) => {
     }
 }
 
-
+export const getStatusThunkCreator = (userId) => {
+    return (dispatch) => {
+        usersAPI.getStatus(userId).then(response => {
+            dispatch(setStatus(response.data));
+        })
+    }
+}
+export const updateStatusThunkCreator = (status) => {
+    return (dispatch) => {
+        usersAPI.updateStatus(status).then(response => {
+            if(response.data.data.resultCode===0){
+                dispatch(setStatus(status));
+            }
+        })
+    }
+}
 // export const followUsersThunkCreator = (userId) => {
 //     return (dispatch) => {
 //         dispatch(toggleFollowingProgress(true, userId));

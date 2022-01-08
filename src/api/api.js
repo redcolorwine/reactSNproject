@@ -27,7 +27,19 @@ export const usersAPI = {
     },
     getAuthUser(){
         return instance.get(`auth/me`)
-    }
+    },
+    getStatus(userId){
+        return instance.get(`profile/status/${userId}`)
+    },
+    updateStatus(status){
+        return instance.put(`profile/status`,{status:status})
+    },
+    login(email,password,rememberme=false){
+        return instance.post(`auth/login`,{email,password,rememberme})
+    },
+    logout(){
+        return instance.delete(`auth/login`)
+    },
 }
 
 //вовзращаем сразу data данные из запроса в компоненту, чтобы не передавать лишние данные

@@ -1,0 +1,20 @@
+.formControl{
+    background-color: turquoise;
+}
+.error{
+    border: 3px solid red;
+   
+}
+
+.errorspan{
+    border:none;
+    color:red;
+    font-size: 12pt;
+}
+
+.formSummaryError{
+    border: red 1px solid;
+    padding: 5px;
+    color:red;
+}
+

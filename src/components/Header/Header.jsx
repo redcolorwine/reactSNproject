@@ -8,7 +8,9 @@ const Header=(props)=>{
         <img alt="logoimg" src={logo}></img>
         <span id={cmedia.ht}>AnimaSocial Net</span>
         <div className={cmedia.loginblock}>
-          {props.isAuth ? props.login : <NavLink to={'/login'}>Login</NavLink>} 
+          {props.isAuth 
+          ?  <div>{props.login} <button onClick={props.logout}>logout</button></div>
+          : <NavLink to={'/login'}>Login</NavLink>} 
           
         </div>
       </header>
