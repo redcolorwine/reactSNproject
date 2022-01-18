@@ -4,7 +4,7 @@ import React from "react";
 import UsersC from './UsersC';
 import Preloader from "../common/preloader/preloader";
 import { usersAPI } from "../../api/api";
-
+import {getCurrentPage, getFetching, getFollowingInProgress, getPageSize, getTotalUsersCount, getUsers, getUsersSuperSelector} from "../../redux/usersSelectors"
 class UsersCContainer extends React.Component {
 
 
@@ -40,12 +40,12 @@ class UsersCContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        users: state.userPageC.users,
-        pageSize: state.userPageC.pageSize,
-        totalUsersCount: state.userPageC.totalUsersCount,
-        currentPage: state.userPageC.currentPage,
-        isFetching: state.userPageC.isFetching,
-        followingInProgress: state.userPageC.followingInProgress
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getFetching(state),
+        followingInProgress: getFollowingInProgress(state)
 
     }
 }

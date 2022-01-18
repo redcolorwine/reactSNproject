@@ -2,6 +2,7 @@
 import Preloader from "../../common/preloader/preloader";
 import cmedia from "./ProfileInfo.module.css"
 import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 const ProfileInfo = (props) => {
 
   if (!props.profile) {
@@ -20,7 +21,7 @@ const ProfileInfo = (props) => {
         {/* <img src={props.proImg} alt="img2" /> */}
         <div className={cmedia.profileText}>
           <img src={props.profile.photos.large} alt="" />
-          <ProfileStatus updateStatus={props.updateStatus} status={props.status}/>
+          <ProfileStatusWithHooks updateStatus={props.updateStatus} status={props.status}/>
           <p>{props.profile.fullName}</p>
           <p>{props.profile.aboutMe}</p>
           <p>{props.profile.lookingForAJobDescription}</p>
