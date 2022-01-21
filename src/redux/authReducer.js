@@ -36,6 +36,7 @@ export const setAuthUserData = (userId, email, login, isAuth) => {
     }
 }
 
+/* БЫЛО ДО ASYNC
 export const getAuthUserThunkCreator = () => {
     return (dispatch) => {
         usersAPI.getAuthUser().then(response => {
@@ -44,6 +45,18 @@ export const getAuthUserThunkCreator = () => {
                 dispatch(setAuthUserData(id, email, login, true));
             }
         });
+    }
+}
+*/
+// C ASYNC
+export const getAuthUserThunkCreator = () => {
+    return async (dispatch) => {
+       let response = await usersAPI.getAuthUser();
+            if (response.data.resultCode === 0) {
+                let { id, login, email } = response.data.data;
+                dispatch(setAuthUserData(id, email, login, true));
+            }
+      
     }
 }
 

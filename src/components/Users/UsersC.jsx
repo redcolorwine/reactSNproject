@@ -4,6 +4,7 @@ import logo1 from '../../media/animka1.jpg';
 import { NavLink } from "react-router-dom";
 import * as axios from 'axios';
 import { usersAPI } from '../../api/api';
+import Paginator from "./paginator";
 let UsersC = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pages = [];
@@ -11,12 +12,7 @@ let UsersC = (props) => {
         pages.push(i);
     }
     return (
-        <div>
-            <div>
-                {pages.map((page) => {
-                    return (<span onClick={(e) => { props.onPageChanged(page); }} className={props.currentPage === page && cmedia.selectedPage}>{page}</span>)
-                })}
-            </div>
+       <div> <Paginator pageSize={props.pageSize} totalUsersCount={props.totalUsersCount} onPageChanged={props.onPageChanged} currentPage={props.currentPage}/>
             {
                 props.users.map((ul) => {
                     return <div key={ul.id} >
