@@ -12,7 +12,7 @@ let UsersC = (props) => {
         pages.push(i);
     }
     return (
-       <div> <Paginator pageSize={props.pageSize} totalUsersCount={props.totalUsersCount} onPageChanged={props.onPageChanged} currentPage={props.currentPage}/>
+       <div> <Paginator portionSize='10' pageSize={props.pageSize} totalUsersCount={props.totalUsersCount} onPageChanged={props.onPageChanged} currentPage={props.currentPage}/>
             {
                 props.users.map((ul) => {
                     return <div key={ul.id} >
