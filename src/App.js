@@ -7,6 +7,7 @@ import Music from './components/Music/music';
 import News from './components/News/News';
 import {
   BrowserRouter,
+  HashRouter,
   Routes,
   Route
 } from "react-router-dom";
@@ -33,7 +34,8 @@ class App extends React.Component {
     }
     return (
       
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
+        
         <div className="app-wrapper">
           <HeaderContainer />
           <Nav navstore={this.props.navstore} />
@@ -55,7 +57,8 @@ class App extends React.Component {
             </React.Suspense>
           </div>
         </div>
-      </BrowserRouter>
+        
+    </BrowserRouter>
     )
   }
 }

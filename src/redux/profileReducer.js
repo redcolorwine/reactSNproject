@@ -1,9 +1,11 @@
+import { stopSubmit } from "redux-form";
 import { usersAPI } from "../api/api";
 
 const ADD_POST = 'ADD-POST';
 const CHANGE_TEXT_AREA = 'CHANGE-TEXT-AREA';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
+const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS';
 export let addPostActionCreator = (newPostText) => {
     return {
         type: ADD_POST,
@@ -17,12 +19,20 @@ export let changeTextAreaActionCreator = (text) => {
     }
 }
 
-export const setStatus=(status)=>{
-    return{
-        type:SET_STATUS,
+export const setStatus = (status) => {
+    return {
+        type: SET_STATUS,
         status
     }
 }
+
+export const savePhotoSuccess = (photos) => {
+    return {
+        type: SAVE_PHOTO_SUCCESS,
+        photos
+    }
+}
+
 export let setUserProfile = (profile) => { return { type: SET_USER_PROFILE, profile } }
 let initialState = {
     myPostData: [
@@ -34,7 +44,8 @@ let initialState = {
     ],
     newPostText: 'helloHu',
     profile: null,
-    status: " "
+    status: " ",
+
 
 }
 
@@ -60,10 +71,16 @@ const profileReducer = (state = initialState, action) => {
                 profile: action.profile
             }
         case SET_STATUS:
-            return{
+            return {
                 ...state,
-                status:action.status
+                status: action.status
             }
+            case SAVE_PHOTO_SUCCESS:
+                return {
+                    ...state,
+                    profie:{...state.profile, photos:action.photos}
+                   
+                }
         default: return state;
     }
 
@@ -87,8 +104,33 @@ export const getStatusThunkCreator = (userId) => {
 export const updateStatusThunkCreator = (status) => {
     return (dispatch) => {
         usersAPI.updateStatus(status).then(response => {
-            if(response.data.data.resultCode===0){
+            if (response.data.data.resultCode === 0) {
                 dispatch(setStatus(status));
+            }
+        })
+    }
+}
+export const savePhoto = (file) => {
+    return (dispatch) => {
+        usersAPI.savePhoto(file).then(response => {
+            if (response.data.data.resultCode === 0) {
+                dispatch(savePhotoSuccess(response.data.data.photos));
+            }
+        })
+    }
+}
+
+
+
+export const saveProfile = (profile) => {
+    return (dispatch,getState) => {
+        const userId=getState.auth.userId;
+        usersAPI.saveProfile(profile).then(response => {
+            if (response.data.data.resultCode === 0) {
+                dispatch(getUserProfileThunkCreator(userId))
+            } else {
+                dispatch(stopSubmit("editProfile",{_error:response.data.messages[0]}));
+                return Promise.reject(response.data.messages[0]);
             }
         })
     }
