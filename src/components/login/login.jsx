@@ -10,7 +10,7 @@ let maxPassLength20 = maxLengthCreator(20);
 
 const Login = (props) => {
     const onSubmit = (formData) => {
-        props.login(formData.email, formData.password, formData.rememberme);
+        props.login(formData.email, formData.password, formData.rememberme, formData.captcha);
     }
     if (props.isAuth) {
         return <Navigate to={"/profile"} />
@@ -19,7 +19,7 @@ const Login = (props) => {
     return (
         <div>
             <h1>LOGIN</h1>
-            <LoginReduxForm onSubmit={onSubmit} />
+            <LoginReduxForm captchaUrl={props.captchaUrl} onSubmit={onSubmit} />
         </div>
     )
 }
@@ -35,6 +35,8 @@ const LoginForm = (props) => {
             <div>
                 <Field type={"checkbox"} name={"rememberme"} component={"input"} /> remember me
             </div>
+            {props.captchaUrl && <img src={props.captchaUrl}/>}
+            {props.captchaUrl &&  <Field placeholder={"captcha"} name={"captcha"} component={Input} validate={[requiredField, maxLoginlegth10]} />}
             {props.error && <div className={cmedia.formSummaryError}>
                 {props.error}
             </div>}
@@ -50,6 +52,7 @@ const LoginReduxForm = reduxForm({
 })(LoginForm)
 const mapStateToProps = (state) => {
     return {
+        captchaUrl:state.auth.captchaUrl,
         isAuth: state.auth.isAuth
     }
 }

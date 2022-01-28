@@ -2,6 +2,7 @@ import { stopSubmit } from "redux-form";
 import { usersAPI } from "../api/api";
 
 const SET_USER_DATA = 'SET_USER_DATA';
+const GET_CAPTCHA_URL_SUCCESS = 'GET_CAPTCHA_URL_SUCCESS';
 
 
 let initialState = {
@@ -9,7 +10,8 @@ let initialState = {
     userId: null,
     email: null,
     login: null,
-    isAuth: false
+    isAuth: false,
+    captchaUrl: null
 };
 
 const authReducer = (state = initialState, action) => {
@@ -24,6 +26,14 @@ const authReducer = (state = initialState, action) => {
 
             };
 
+        case GET_CAPTCHA_URL_SUCCESS:
+
+            return {
+                ...state,
+                captchaUrl: action.captchaUrl
+
+            };
+
         default: return state;
     }
 
@@ -35,7 +45,12 @@ export const setAuthUserData = (userId, email, login, isAuth) => {
         data: { userId, email, login, isAuth }
     }
 }
-
+export const getCapthcaUrlSuccess = (captchaUrl) => {
+    return {
+        type: GET_CAPTCHA_URL_SUCCESS,
+        data: { captchaUrl }
+    }
+}
 /* БЫЛО ДО ASYNC
 export const getAuthUserThunkCreator = () => {
     return (dispatch) => {
@@ -51,23 +66,27 @@ export const getAuthUserThunkCreator = () => {
 // C ASYNC
 export const getAuthUserThunkCreator = () => {
     return async (dispatch) => {
-       let response = await usersAPI.getAuthUser();
-            if (response.data.resultCode === 0) {
-                let { id, login, email } = response.data.data;
-                dispatch(setAuthUserData(id, email, login, true));
-            }
-      
+        let response = await usersAPI.getAuthUser();
+        if (response.data.resultCode === 0) {
+            let { id, login, email } = response.data.data;
+            dispatch(setAuthUserData(id, email, login, true));
+        }
+
     }
 }
 
-export const login = (email, password, rememberme) => {
+export const login = (email, password, rememberme, captcha) => {
     return (dispatch) => {
-        usersAPI.login(email, password, rememberme).then(response => {
+        usersAPI.login(email, password, rememberme,captcha).then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(getAuthUserThunkCreator());
-            } else {
-                let message=response.data.messages.length>0 ? response.data.messages[0] : "Some error";
-                dispatch(stopSubmit("login",{_error:message}));
+            } 
+            else {
+                if (response.data.resultCode === 10){
+                    dispatch(getCaptchaUrl());
+                }
+                let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";
+                dispatch(stopSubmit("login", { _error: message }));
             }
         });
     }
@@ -83,4 +102,13 @@ export const logout = () => {
     }
 }
 
+export const getCaptchaUrl = () => {
+    return (dispatch) => {
+        usersAPI.getCaptchaUrl().then(response => {
+            const captchaUrl = response.data.url
+            dispatch(getCapthcaUrlSuccess(captchaUrl));
+
+        });
+    }
+}
 export default authReducer;
